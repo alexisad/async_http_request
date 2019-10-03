@@ -29,6 +29,7 @@ when defined(emscripten) or defined(js):
 
     proc status*(r: XMLHTTPRequest): int {.jsimportProp.}
     proc readyState*(r: XMLHTTPRequest): int {.jsimportProp.}
+    proc `type`*(r: XMLHTTPRequest): string {.jsimportProp.}
 
     proc sendRequest*(meth, url, body: string, headers: openarray[(string, string)], handler: Handler) =
         let oReq = newXMLHTTPRequest()
