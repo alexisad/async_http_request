@@ -16,6 +16,7 @@ when defined(emscripten) or defined(js):
     proc open*(r: XMLHTTPRequest, httpMethod, url: cstring) {.jsimport.}
     proc send*(r: XMLHTTPRequest) {.jsimport.}
     proc send*(r: XMLHTTPRequest, body: cstring) {.jsimport.}
+    proc abort*(r: XMLHTTPRequest) {.jsimport.}
 
     proc addEventListener*(r: XMLHTTPRequest, event: cstring, listener: proc()) {.jsimport.}
     proc setRequestHeader*(r: XMLHTTPRequest, header, value: cstring) {.jsimport.}
