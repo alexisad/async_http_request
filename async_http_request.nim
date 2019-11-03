@@ -26,7 +26,7 @@ when defined(emscripten) or defined(js):
 
     proc `responseType=`*(r: XMLHTTPRequest, t: cstring) {.jsimportProp.}
     proc response*(r: XMLHTTPRequest): JSObj {.jsimportProp.}
-    proc getResponseHeader*(r: XMLHTTPRequest, key: cstring): jstring {.jsimportProp.}
+    proc getResponseHeader*(r: XMLHTTPRequest, key: cstring): jsstring {.jsimportProp.}
     proc getAllResponseHeaders*(r: XMLHTTPRequest): jstring {.jsimportProp.}
 
     proc status*(r: XMLHTTPRequest): int {.jsimportProp.}
