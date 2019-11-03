@@ -2,7 +2,7 @@
 # run nim with -d:asyncHttpRequestAsyncIO to enable sendRequest proc, which will call out to asyncio
 # loop on the main thread
 
-type Response* = tuple[statusCode: int, status: string, body: string]
+type Response* = tuple[statusCode: int, status: string, body: string, respHeaders: openarray[(string, string)]]
 
 type Handler* = proc (data: Response)
 
@@ -26,10 +26,12 @@ when defined(emscripten) or defined(js):
 
     proc `responseType=`*(r: XMLHTTPRequest, t: cstring) {.jsimportProp.}
     proc response*(r: XMLHTTPRequest): JSObj {.jsimportProp.}
+    proc getResponseHeader*(r: XMLHTTPRequest, key: cstring): jstring {.jsimportProp.}
+    proc getAllResponseHeaders*(r: XMLHTTPRequest): jstring {.jsimportProp.}
 
     proc status*(r: XMLHTTPRequest): int {.jsimportProp.}
     proc readyState*(r: XMLHTTPRequest): int {.jsimportProp.}
-    proc `type`*(r: XMLHTTPRequest): string {.jsimportProp.}
+    
 
     proc sendRequest*(meth, url, body: string, headers: openarray[(string, string)], handler: Handler) =
         let oReq = newXMLHTTPRequest()
