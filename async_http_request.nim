@@ -2,7 +2,8 @@
 # run nim with -d:asyncHttpRequestAsyncIO to enable sendRequest proc, which will call out to asyncio
 # loop on the main thread
 
-type Response* = tuple[statusCode: int, status: string, body: string, respHeaders: openarray[(string, string)]]
+type Response* = tuple[statusCode: int, status: string, body: string]
+type ResponseH* = tuple[statusCode: int, status: string, body: string, respHeaders: openarray[(string, string)]]
 
 type Handler* = proc (data: Response)
 
